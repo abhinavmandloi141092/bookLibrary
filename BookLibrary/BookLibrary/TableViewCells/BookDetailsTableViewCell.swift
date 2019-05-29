@@ -18,7 +18,7 @@ class BookDetailsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        ///
         self.view_Background.layer.borderWidth = 1.0
         self.view_Background.layer.borderColor = UIColor.darkGray.cgColor
     }
