@@ -12,10 +12,20 @@ class BookListViewController: UIViewController {
     
     @IBOutlet weak var bookListTableView: UITableView!
     private var serverHelper: ServerHelper = ServerHelper()
+    private var bookListData: Set<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bookListTableView.tableFooterView = UIView()
+        self.modifingData()
+    }
+    
+    private func modifingData() {
+        for data in self.serverHelper.getDataFromJSONFile() {
+            self.bookListData.insert(data.author_name)
+            self.bookListData.insert(data.genre)
+            self.bookListData.insert(data.author_country)
+        }
     }
 }
 
@@ -24,7 +34,7 @@ class BookListViewController: UIViewController {
 extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.serverHelper.getDataFromJSONFile().count
+        return self.bookListData.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,7 +44,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: Constants.kCell)
         cell.selectionStyle = .none
-        cell.textLabel?.text = "Name \(indexPath.row + 20)"//self.serverHelper.getDataFromJSONFile()[indexPath.row].book_title
+        cell.textLabel?.text = self.bookListData[self.bookListData.index(self.bookListData.startIndex, offsetBy: indexPath.row)]
         return cell
     }
     

@@ -48,35 +48,35 @@ struct BookData {
     
     init(JSONDictionary: [String: AnyObject]) {
         
-        if let author_country = JSONDictionary["author_country"]?.string {
+        if let author_country = JSONDictionary["author_country"] as? String {
             self.author_country = author_country
         }
         
-        if let author_name = JSONDictionary["author_name"]?.string {
+        if let author_name = JSONDictionary["author_name"] as? String {
             self.author_name = author_name
         }
         
-        if let book_title = JSONDictionary["book_title"]?.string {
+        if let book_title = JSONDictionary["book_title"] as? String  {
             self.book_title = book_title
         }
         
-        if let genre = JSONDictionary["genre"]?.string {
+        if let genre = JSONDictionary["genre"] as? String {
             self.genre = genre
         }
         
-        if let id = JSONDictionary["id"]?.string {
+        if let id = JSONDictionary["id"] as? String {
             self.id = id
         }
         
-        if let image_url = JSONDictionary["image_url"]?.string {
+        if let image_url = JSONDictionary["image_url"] as? String {
             self.image_url = image_url
         }
         
-        if let publisher = JSONDictionary["publisher"]?.string {
+        if let publisher = JSONDictionary["publisher"] as? String {
             self.publisher = publisher
         }
         
-        if let sold_count = JSONDictionary["sold_count"]?.doubleValue {
+        if let sold_count = JSONDictionary["sold_count"] as? Double {
             self.sold_count = sold_count
         }
     }
