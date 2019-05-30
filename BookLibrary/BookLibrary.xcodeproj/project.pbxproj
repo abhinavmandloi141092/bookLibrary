@@ -20,6 +20,7 @@
 		154370AE229ECDFD002DF982 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154370AD229ECDFD002DF982 /* Constants.swift */; };
 		154370B1229ED1F5002DF982 /* BookDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = 154370B0229ED1F5002DF982 /* BookDetails.json */; };
 		154370B4229ED261002DF982 /* ServerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154370B3229ED261002DF982 /* ServerHelper.swift */; };
+		15AE6F3122A01ABA003DB922 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE6F3022A01ABA003DB922 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		154370AD229ECDFD002DF982 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		154370B0229ED1F5002DF982 /* BookDetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BookDetails.json; sourceTree = "<group>"; };
 		154370B3229ED261002DF982 /* ServerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerHelper.swift; sourceTree = "<group>"; };
+		15AE6F3022A01ABA003DB922 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				154370B3229ED261002DF982 /* ServerHelper.swift */,
+				15AE6F3022A01ABA003DB922 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				154370AA229EC53A002DF982 /* BookDetailsViewController.swift in Sources */,
 				15437076229EC162002DF982 /* AppDelegate.swift in Sources */,
 				154370AC229EC551002DF982 /* BookListViewController.swift in Sources */,
+				15AE6F3122A01ABA003DB922 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

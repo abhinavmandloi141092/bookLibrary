@@ -29,10 +29,10 @@ class ServerHelper {
                 
             } catch {
                 // handle error
-                print("Error")
+                return []
             }
         }
-        return self.dataModel
+        return []
     }
 }
 
@@ -45,6 +45,9 @@ struct BookData {
     var image_url: String = ""
     var publisher: String = ""
     var sold_count: Double = 0
+    
+    init() {
+    }
     
     init(JSONDictionary: [String: AnyObject]) {
         

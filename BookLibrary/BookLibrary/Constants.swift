@@ -14,4 +14,5 @@ class Constants {
     static let kBooksLibrary = "Books Library"
     static let kCell = "Cell"
     static let kStoryBoardName = "Main"
+    static let kErrorMessage = "Something went worng"
 }

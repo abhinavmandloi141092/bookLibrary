@@ -11,6 +11,8 @@ import UIKit
 class BookListViewController: UIViewController {
     
     @IBOutlet weak var bookListTableView: UITableView!
+    @IBOutlet weak var lbl_Error: UILabel!
+    
     private var serverHelper: ServerHelper = ServerHelper()
     private var bookListData: Set<String> = []
     
@@ -21,10 +23,18 @@ class BookListViewController: UIViewController {
     }
     
     private func modifingData() {
-        for data in self.serverHelper.getDataFromJSONFile() {
-            self.bookListData.insert(data.author_name)
-            self.bookListData.insert(data.genre)
-            self.bookListData.insert(data.author_country)
+
+        if self.serverHelper.getDataFromJSONFile().count == 0 {
+            self.bookListTableView.isHidden = true
+            self.lbl_Error.text = Constants.kErrorMessage
+        }
+        else {
+            self.bookListTableView.isHidden = false
+            for data in self.serverHelper.getDataFromJSONFile() {
+                self.bookListData.insert(data.author_name)
+                self.bookListData.insert(data.genre)
+                self.bookListData.insert(data.author_country)
+            }
         }
     }
 }
@@ -73,7 +83,15 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bookDetailsViewController: UIViewController = UIStoryboard(name: Constants.kStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.kBookDetailsViewController)
+        let bookDetailsViewController: BookDetailsViewController = UIStoryboard(name: Constants.kStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.kBookDetailsViewController) as! BookDetailsViewController
+        
+        let seletedName = self.bookListData[self.bookListData.index(self.bookListData.startIndex, offsetBy: indexPath.row)]
+        let data = self.serverHelper.getDataFromJSONFile().filter { (s: BookData) -> Bool in
+            return seletedName == s.author_name || seletedName == s.author_country || seletedName == s.genre
+        }
+        
+        bookDetailsViewController.dataModelForDetails = data
+        
         if let navigator = self.navigationController {
             navigator.pushViewController(bookDetailsViewController, animated: true)
         }

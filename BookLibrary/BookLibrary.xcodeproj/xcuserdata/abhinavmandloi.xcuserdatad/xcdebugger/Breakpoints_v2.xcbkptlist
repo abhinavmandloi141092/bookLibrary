@@ -2,4 +2,70 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookLibrary/ViewControllers/BookDetailsViewController.swift"
+            timestampString = "580922165.833235"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "updateSearchResults(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookLibrary.BookDetailsViewController.updateSearchResults(for: __C.UISearchController) -&gt; ()"
+                  moduleName = "BookLibrary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhinavmandloi/Documents/MIndstix/iOS/bookLibrary/BookLibrary/BookLibrary/ViewControllers/BookDetailsViewController.swift"
+                  timestampString = "580921511.405429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "755">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BookLibrary.BookData) -&gt; Swift.Bool in BookLibrary.BookDetailsViewController.updateSearchResults(for: __C.UISearchController) -&gt; ()"
+                  moduleName = "BookLibrary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhinavmandloi/Documents/MIndstix/iOS/bookLibrary/BookLibrary/BookLibrary/ViewControllers/BookDetailsViewController.swift"
+                  timestampString = "580921511.412451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookLibrary/ViewControllers/BookDetailsViewController.swift"
+            timestampString = "580922165.834324"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "updateSearchResults(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -13,13 +13,12 @@ class BookDetailsViewController: UIViewController {
     @IBOutlet weak var bookDetailsTableView: UITableView!
     
     private var bookLibrarySearchController: UISearchController = UISearchController()
-    private var dataArr: Array<String> = ["numberOfRowsInSection","forCellReuseIdentifier","bookDetailsTableView","searchBar","String"]
     public var dataModelForDetails: Array<BookData> = []
-    private var searchData: Array<String> = []
+    private var searchData: Array<BookData> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchData = dataArr
+        self.searchData = dataModelForDetails
         self.registerCellNibs()
         self.setUpUI()
         
@@ -55,10 +54,7 @@ class BookDetailsViewController: UIViewController {
 extension BookDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if self.bookLibrarySearchController.isActive {
-            return self.searchData.count
-//        }
-//        return self.dataArr.count
+        return self.searchData.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,20 +64,14 @@ extension BookDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kBookDetailsTableViewCell, for: indexPath) as! BookDetailsTableViewCell
         cell.selectionStyle = .none
-//        if self.bookLibrarySearchController.isActive {
-            cell.lbl_Title.text = self.searchData[indexPath.row] + "\(indexPath.row + 1000)"
-//        }
-//        else {
-//            cell.lbl_Title.text = self.dataArr[indexPath.row] + "\(indexPath.row + 1000)"
-//        }
+        cell.bookData = self.dataModelForDetails[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 121
+        return 138
     }
 }
-
 
 // MARK: - UISearchResultsUpdating
 extension BookDetailsViewController: UISearchResultsUpdating {
@@ -89,14 +79,14 @@ extension BookDetailsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text!.count > 0 {
             self.searchData.removeAll(keepingCapacity: false)
-            let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-            let array = (self.dataArr as NSArray).filtered(using: searchPredicate)
-            self.searchData = array as! [String]
+            let data = self.dataModelForDetails.filter { (s: BookData) -> Bool in
+                return searchController.searchBar.text! == s.author_name || searchController.searchBar.text! == s.author_country || searchController.searchBar.text! == s.genre
+            }
+            self.searchData = data
             
         } else {
-            self.searchData = dataArr
+            self.searchData = self.dataModelForDetails
         }
         self.bookDetailsTableView.reloadData()
-
     }
 }

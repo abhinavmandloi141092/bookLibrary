@@ -21,6 +21,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYc-ZG-ZMY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4L-Ic-Rlt">
+                                        <rect key="frame" x="20" y="303.5" width="335" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="X19-bn-7HC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-Kh-Cqj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,7 +44,10 @@
                                     <constraint firstAttribute="trailing" secondItem="Emu-Kh-Cqj" secondAttribute="trailing" id="D6A-n3-0bd"/>
                                     <constraint firstAttribute="bottom" secondItem="Emu-Kh-Cqj" secondAttribute="bottom" id="DyM-nq-vTE"/>
                                     <constraint firstItem="Emu-Kh-Cqj" firstAttribute="leading" secondItem="dYc-ZG-ZMY" secondAttribute="leading" id="E0B-Ke-XA3"/>
+                                    <constraint firstAttribute="trailing" secondItem="g4L-Ic-Rlt" secondAttribute="trailing" constant="20" id="V93-Zo-59t"/>
+                                    <constraint firstItem="g4L-Ic-Rlt" firstAttribute="centerY" secondItem="dYc-ZG-ZMY" secondAttribute="centerY" id="ewU-49-djT"/>
                                     <constraint firstItem="Emu-Kh-Cqj" firstAttribute="top" secondItem="dYc-ZG-ZMY" secondAttribute="top" id="oeI-ww-Ye1"/>
+                                    <constraint firstItem="g4L-Ic-Rlt" firstAttribute="leading" secondItem="dYc-ZG-ZMY" secondAttribute="leading" constant="20" id="yhE-gZ-aRJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -51,6 +63,7 @@
                     <navigationItem key="navigationItem" id="VY3-CM-saU"/>
                     <connections>
                         <outlet property="bookListTableView" destination="Emu-Kh-Cqj" id="wTd-Da-QDV"/>
+                        <outlet property="lbl_Error" destination="g4L-Ic-Rlt" id="kXx-b0-uHh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

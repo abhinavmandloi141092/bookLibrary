@@ -16,6 +16,12 @@ class BookDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_Type: UILabel!
     @IBOutlet weak var view_Background: UIView!
     
+    var bookData: BookData = BookData() {
+        didSet {
+            self.configureCellData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         ///
@@ -27,5 +33,12 @@ class BookDetailsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    private func configureCellData() {
+        self.lbl_Title.text = self.bookData.book_title
+        self.lbl_Details.text = self.bookData.author_name
+        self.lbl_Type.text = self.bookData.genre
+        self.imageView_Book.image = UIImage(url: URL(string: self.bookData.image_url))
     }
 }
