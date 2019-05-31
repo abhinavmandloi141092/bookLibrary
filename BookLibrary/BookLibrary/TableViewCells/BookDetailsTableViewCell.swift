@@ -16,6 +16,7 @@ class BookDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_Type: UILabel!
     @IBOutlet weak var view_Background: UIView!
     
+    /// For cell's data assinging
     var bookData: BookData = BookData() {
         didSet {
             self.configureCellData()
@@ -24,21 +25,24 @@ class BookDetailsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        ///
         self.view_Background.layer.borderWidth = 1.0
         self.view_Background.layer.borderColor = UIColor.darkGray.cgColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     
+    /// Assinging data to cell Componets
     private func configureCellData() {
         self.lbl_Title.text = self.bookData.book_title
         self.lbl_Details.text = self.bookData.author_name
         self.lbl_Type.text = self.bookData.genre
-        self.imageView_Book.image = UIImage(url: URL(string: self.bookData.image_url))
+        self.imageView_Book.image = nil
+        if let url = URL(string: self.bookData.image_url)
+        {
+            self.imageView_Book.load(url: url)
+        }
     }
 }

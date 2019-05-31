@@ -9,37 +9,28 @@
 import UIKit
 
 class BookDetailsViewController: UIViewController {
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bookDetailsTableView: UITableView!
     
+    /// For Bool Details Data
     public var dataModelForDetails: Array<BookData> = []
+    
+    /// For storing searchData
     private var searchData: Array<BookData> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCellNibs()
-        self.setUpUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         self.searchData = dataModelForDetails
         searchBar.delegate = self
-//        self.bookDetailsTableView.tableHeaderView = self.searchBar
-        self.bookDetailsTableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     /// Register Nibs
     private func registerCellNibs() {
         let nib = UINib(nibName: Constants.kBookDetailsTableViewCell, bundle: nil)
         self.bookDetailsTableView.register(nib, forCellReuseIdentifier: Constants.kBookDetailsTableViewCell)
-    }
-    
-    private func setUpUI() {
-        //self.bookDetailsTableView.tableHeaderView = self.searchBar
     }
 }
 
@@ -67,6 +58,8 @@ extension BookDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
+
+// MARK: - UISearchBarDelegate
 extension BookDetailsViewController: UISearchBarDelegate {
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -75,6 +68,7 @@ extension BookDetailsViewController: UISearchBarDelegate {
             self.bookDetailsTableView.reloadData()
             return
         }
+        
         self.searchData.removeAll()
         for dict in self.dataModelForDetails {
             if dict.book_title.lowercased().contains(searchText.lowercased()) || dict.author_name.lowercased().contains(searchText.lowercased()) ||

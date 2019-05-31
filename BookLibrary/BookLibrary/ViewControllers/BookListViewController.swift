@@ -22,9 +22,14 @@ class BookListViewController: UIViewController {
         self.modifingData()
     }
     
+    
+    /// Manipulating the Books list data here
     private func modifingData() {
-        serverHelper.dataModel = self.serverHelper.getDataFromJSONFile()
+        self.serverHelper.dataModel = self.serverHelper.getDataFromJSONFile()
+        
+        //Confirming Data
         if serverHelper.dataModel.count == 0 {
+            //If Arrary is empty then showing error message
             self.bookListTableView.isHidden = true
             self.lbl_Error.text = Constants.kErrorMessage
         }
@@ -38,7 +43,6 @@ class BookListViewController: UIViewController {
         }
     }
 }
-
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -59,6 +63,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         headerView.backgroundColor = UIColor.lightGray
         
@@ -83,13 +88,18 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        /// Details ViewController's Object
         let bookDetailsViewController: BookDetailsViewController = UIStoryboard(name: Constants.kStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.kBookDetailsViewController) as! BookDetailsViewController
         
         let seletedName = self.bookListData[self.bookListData.index(self.bookListData.startIndex, offsetBy: indexPath.row)]
         
+        /// Manipulate the selected book data for details ViewController
         let data = self.serverHelper.dataModel.filter { (s: BookData) -> Bool in
             return seletedName == s.author_name || seletedName == s.author_country || seletedName == s.genre
         }
+        
+        /// Assinging data to Details's ViewController
         bookDetailsViewController.dataModelForDetails = data
         
         if let navigator = self.navigationController {

@@ -8,14 +8,17 @@
 
 import UIKit
 
-extension UIImage {
-    convenience init?(url: URL?) {
-        guard let url = url else { return nil }
-        do {
-            let data = try Data(contentsOf: url)
-            self.init(data: data)
-        } catch {
-            return nil
+// MARK: - For taking image from URL
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
         }
     }
 }

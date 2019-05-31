@@ -12,30 +12,38 @@ class ServerHelper {
     
     public var dataModel: Array<BookData> = []
     
+    
+    /// For gettimng Data from JSON
+    ///
+    /// - Returns: If data found then return dataModel Arrary else empty Arrary
     public func getDataFromJSONFile() -> Array<BookData> {
         
         if let path = Bundle.main.path(forResource: "BookDetails", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                print(jsonResult)
+                
                 if let jsonResult = jsonResult as? Array<[String: AnyObject]> {
                     self.dataModel = []
                     for data1 in jsonResult {
                         self.dataModel.append(BookData(JSONDictionary: data1))
                     }
                 }
+                // DataModel Arrary
                 return self.dataModel
                 
             } catch {
-                // handle error
+                // empty Arrary
                 return []
             }
         }
+        // empty Arrary
         return []
     }
 }
 
+
+/// Data Model According to JSON's Structure
 struct BookData {
     var author_country: String = ""
     var author_name: String = ""
