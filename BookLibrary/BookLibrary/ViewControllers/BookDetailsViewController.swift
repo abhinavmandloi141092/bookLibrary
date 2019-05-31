@@ -9,34 +9,28 @@
 import UIKit
 
 class BookDetailsViewController: UIViewController {
-    
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bookDetailsTableView: UITableView!
     
-    private var bookLibrarySearchController: UISearchController = UISearchController()
     public var dataModelForDetails: Array<BookData> = []
     private var searchData: Array<BookData> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchData = dataModelForDetails
         self.registerCellNibs()
         self.setUpUI()
-        
-        self.bookLibrarySearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
-            controller.hidesNavigationBarDuringPresentation = false
-            controller.searchBar.sizeToFit()
-            
-            self.bookDetailsTableView.tableHeaderView = controller.searchBar
-            return controller
-        })()
-        
-        self.bookDetailsTableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.searchData = dataModelForDetails
+        searchBar.delegate = self
+//        self.bookDetailsTableView.tableHeaderView = self.searchBar
         self.bookDetailsTableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     
     /// Register Nibs
     private func registerCellNibs() {
@@ -64,7 +58,7 @@ extension BookDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kBookDetailsTableViewCell, for: indexPath) as! BookDetailsTableViewCell
         cell.selectionStyle = .none
-        cell.bookData = self.dataModelForDetails[indexPath.row]
+        cell.bookData = self.searchData[indexPath.row]
         return cell
     }
     
@@ -73,20 +67,23 @@ extension BookDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension BookDetailsViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        if searchController.searchBar.text!.count > 0 {
-            self.searchData.removeAll(keepingCapacity: false)
-            let data = self.dataModelForDetails.filter { (s: BookData) -> Bool in
-                return searchController.searchBar.text! == s.author_name || searchController.searchBar.text! == s.author_country || searchController.searchBar.text! == s.genre
-            }
-            self.searchData = data
-            
-        } else {
+extension BookDetailsViewController: UISearchBarDelegate {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.count == 0 {
             self.searchData = self.dataModelForDetails
+            self.bookDetailsTableView.reloadData()
+            return
+        }
+        self.searchData.removeAll()
+        for dict in self.dataModelForDetails {
+            if dict.book_title.lowercased().contains(searchText.lowercased()) || dict.author_name.lowercased().contains(searchText.lowercased()) ||
+                dict.genre.lowercased().contains(searchText.lowercased()) {
+                self.searchData.append(dict)
+            }
         }
         self.bookDetailsTableView.reloadData()
     }
 }
+
+

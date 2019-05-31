@@ -23,14 +23,14 @@ class BookListViewController: UIViewController {
     }
     
     private func modifingData() {
-
-        if self.serverHelper.getDataFromJSONFile().count == 0 {
+        serverHelper.dataModel = self.serverHelper.getDataFromJSONFile()
+        if serverHelper.dataModel.count == 0 {
             self.bookListTableView.isHidden = true
             self.lbl_Error.text = Constants.kErrorMessage
         }
         else {
             self.bookListTableView.isHidden = false
-            for data in self.serverHelper.getDataFromJSONFile() {
+            for data in self.serverHelper.dataModel {
                 self.bookListData.insert(data.author_name)
                 self.bookListData.insert(data.genre)
                 self.bookListData.insert(data.author_country)
@@ -86,10 +86,10 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
         let bookDetailsViewController: BookDetailsViewController = UIStoryboard(name: Constants.kStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.kBookDetailsViewController) as! BookDetailsViewController
         
         let seletedName = self.bookListData[self.bookListData.index(self.bookListData.startIndex, offsetBy: indexPath.row)]
-        let data = self.serverHelper.getDataFromJSONFile().filter { (s: BookData) -> Bool in
+        
+        let data = self.serverHelper.dataModel.filter { (s: BookData) -> Bool in
             return seletedName == s.author_name || seletedName == s.author_country || seletedName == s.genre
         }
-        
         bookDetailsViewController.dataModelForDetails = data
         
         if let navigator = self.navigationController {

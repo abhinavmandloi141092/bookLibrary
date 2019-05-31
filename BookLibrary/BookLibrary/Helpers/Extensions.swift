@@ -15,7 +15,6 @@ extension UIImage {
             let data = try Data(contentsOf: url)
             self.init(data: data)
         } catch {
-            print("Cannot load image from url: \(url) with error: \(error)")
             return nil
         }
     }

@@ -81,8 +81,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLI-kd-dPt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Dsv-6L-Ltn">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="xDK-Qe-gy4"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hzr-5p-ySx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="bH3-Vf-dhS" id="A9D-PW-9CL"/>
@@ -92,10 +99,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hzr-5p-ySx" secondAttribute="bottom" id="1Gh-tk-bDz"/>
-                                    <constraint firstAttribute="trailing" secondItem="hzr-5p-ySx" secondAttribute="trailing" id="9aB-7w-Gfc"/>
-                                    <constraint firstItem="hzr-5p-ySx" firstAttribute="leading" secondItem="YLI-kd-dPt" secondAttribute="leading" id="Q9P-te-pde"/>
-                                    <constraint firstItem="hzr-5p-ySx" firstAttribute="top" secondItem="YLI-kd-dPt" secondAttribute="top" id="aSl-nF-BJm"/>
+                                    <constraint firstItem="Dsv-6L-Ltn" firstAttribute="leading" secondItem="YLI-kd-dPt" secondAttribute="leading" id="0UT-A4-fVm"/>
+                                    <constraint firstItem="Dsv-6L-Ltn" firstAttribute="top" secondItem="YLI-kd-dPt" secondAttribute="top" id="Bed-qX-Bfs"/>
+                                    <constraint firstAttribute="trailing" secondItem="hzr-5p-ySx" secondAttribute="trailing" id="IYl-T0-zIy"/>
+                                    <constraint firstAttribute="bottom" secondItem="hzr-5p-ySx" secondAttribute="bottom" id="T6k-76-OdC"/>
+                                    <constraint firstItem="hzr-5p-ySx" firstAttribute="top" secondItem="Dsv-6L-Ltn" secondAttribute="bottom" id="li1-Gc-khx"/>
+                                    <constraint firstItem="hzr-5p-ySx" firstAttribute="leading" secondItem="YLI-kd-dPt" secondAttribute="leading" id="miw-g3-w4i"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dsv-6L-Ltn" secondAttribute="trailing" id="qnj-Jw-pdj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -108,8 +118,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0ba-Pk-e5N"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="bookDetailsTableView" destination="hzr-5p-ySx" id="Meu-3d-WFo"/>
+                        <outlet property="searchBar" destination="Dsv-6L-Ltn" id="PUU-Wd-KEs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pw5-Xe-EfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
